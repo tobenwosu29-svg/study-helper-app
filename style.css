@@ -56,6 +56,15 @@ button:hover {
   transition: transform 0.2s;
 }
 
+.delete-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 14px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
 .card:hover {
   transform: scale(1.05);
 }
