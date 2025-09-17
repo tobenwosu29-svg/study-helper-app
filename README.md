@@ -19,7 +19,7 @@ Built with **HTML, CSS, and JavaScript** — no installation needed, just open i
 ---
 
 ##  Live Demo
-🔗 [Try Study Helper Here](https://tobenwosu29-svg.github.io/study-helper)  
+🔗 [Try Study Helper Here](https://tobenwosu29-svg.github.io/study-helper-app)  
 
 
 ---
