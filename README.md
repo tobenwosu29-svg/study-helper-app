@@ -5,7 +5,7 @@ Built with **HTML, CSS, and JavaScript** — no installation needed, just open i
 
 ---
 
-## ✨ Features
+## Features
 - **Flashcard Mode**  
   - Add custom question/answer cards  
   - Flip cards to reveal answers  
@@ -18,14 +18,14 @@ Built with **HTML, CSS, and JavaScript** — no installation needed, just open i
 
 ---
 
-## 🚀 Live Demo
+##  Live Demo
 🔗 [Try Study Helper Here](https://yourusername.github.io/study-helper)  
 
 *(Replace `yourusername` with your GitHub username once you deploy on GitHub Pages.)*
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 - **HTML5** for structure  
 - **CSS3** for clean, responsive design  
 - **JavaScript (ES6)** for logic and interactivity  
@@ -33,13 +33,13 @@ Built with **HTML, CSS, and JavaScript** — no installation needed, just open i
 
 ---
 
-## 📖 Why I Built This
+##  Why I Built This
 I wanted to create a **simple, accessible tool** for students (like me!) to practice and memorize material efficiently.  
 By combining flashcards with quiz-style testing, **Study Helper** encourages active recall — one of the most effective learning methods.  
 
 ---
 
-## 💡 Future Improvements
+##  Future Improvements
 - Multiple-choice quiz mode  
 - Export/import flashcards  
 - Shareable decks for group study  
