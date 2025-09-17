@@ -1,7 +1,10 @@
 let cards = JSON.parse(localStorage.getItem("flashcards")) || [];
 let quizIndex = 0;
 let quizMode = false;
+let score = 0;
+let total = 0;
 
+// Add new flashcard
 function addCard() {
   let q = document.getElementById("question").value.trim();
   let a = document.getElementById("answer").value.trim();
@@ -16,15 +19,25 @@ function addCard() {
   }
 }
 
+// Flip card
 function flipCard(i) {
   cards[i].flipped = !cards[i].flipped;
   renderCards();
 }
 
+// Delete card
+function deleteCard(i) {
+  cards.splice(i, 1);
+  saveCards();
+  renderCards();
+}
+
+// Save cards
 function saveCards() {
   localStorage.setItem("flashcards", JSON.stringify(cards));
 }
 
+// Render all cards
 function renderCards() {
   let container = document.getElementById("cards");
   container.innerHTML = "";
@@ -32,7 +45,7 @@ function renderCards() {
     let div = document.createElement("div");
     div.className = "card";
 
-    // Show Q or A
+    // Question or Answer text
     let text = document.createElement("span");
     text.innerText = c.flipped ? c.a : c.q;
     text.style.cursor = "pointer";
@@ -53,19 +66,23 @@ function renderCards() {
   });
 }
 
-function deleteCard(i) {
-  cards.splice(i, 1); // remove that card
-  saveCards();
-  renderCards();
+// Show feedback messages
+function showFeedback(message, type = "info") {
+  let fb = document.getElementById("quizFeedback");
+  fb.innerText = message;
+  fb.className = "feedback " + type;
+  fb.style.display = "block";
 }
-
 
 // Quiz functions
 function startQuiz() {
   quizIndex = 0;
+  score = 0;
+  total = cards.length;
+
   if (cards.length > 0) {
     document.getElementById("quizBox").innerText = cards[quizIndex].q;
-    document.getElementById("quizFeedback").innerText = "";
+    showFeedback("Quiz started! " + total + " questions total.", "info");
     document.getElementById("quizAnswer").value = "";
   } else {
     document.getElementById("quizBox").innerText = "No flashcards available!";
@@ -77,26 +94,52 @@ function checkAnswer() {
   if (!userAns) return;
 
   if (userAns.toLowerCase() === cards[quizIndex].a.toLowerCase()) {
-    document.getElementById("quizFeedback").innerText = "✅ Correct!";
+    score++;
+    showFeedback(`✅ Correct! Score: ${score}/${total}`, "success");
   } else {
-    document.getElementById("quizFeedback").innerText = "❌ Wrong! Correct: " + cards[quizIndex].a;
+    showFeedback(`❌ Wrong! Correct: ${cards[quizIndex].a} | Score: ${score}/${total}`, "error");
   }
 
   quizIndex++;
   if (quizIndex < cards.length) {
     setTimeout(() => {
       document.getElementById("quizBox").innerText = cards[quizIndex].q;
-      document.getElementById("quizFeedback").innerText = "";
       document.getElementById("quizAnswer").value = "";
+      document.getElementById("quizFeedback").style.display = "none"; // hide old feedback
     }, 1200);
   } else {
     setTimeout(() => {
-      document.getElementById("quizBox").innerText = "🎉 Quiz finished!";
+      showFeedback(`🎉 Quiz finished! Final Score: ${score}/${total}`, "info");
+      document.getElementById("quizBox").innerText = "All questions complete.";
       document.getElementById("quizAnswer").value = "";
     }, 1200);
   }
 }
 
+// Verify answer online (Wikipedia API)
+async function verifyWithInternet(answer) {
+  if (!answer) {
+    showFeedback("⚠️ Please type an answer first.", "error");
+    return;
+  }
+
+  let url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(answer)}`;
+  try {
+    let res = await fetch(url);
+    if (!res.ok) throw new Error("Not found");
+    let data = await res.json();
+
+    if (data.extract) {
+      showFeedback(`🌐 Verified: ${data.extract.substring(0, 150)}...`, "info");
+    } else {
+      showFeedback("❌ Could not verify online.", "error");
+    }
+  } catch (err) {
+    showFeedback("⚠️ Error fetching from Wikipedia.", "error");
+  }
+}
+
+// Toggle between modes
 function toggleMode() {
   quizMode = !quizMode;
   if (quizMode) {
@@ -111,6 +154,5 @@ function toggleMode() {
   }
 }
 
-// initial render
+// Initial render
 renderCards();
-
