@@ -19,9 +19,8 @@ Built with **HTML, CSS, and JavaScript** — no installation needed, just open i
 ---
 
 ##  Live Demo
-🔗 [Try Study Helper Here](https://yourusername.github.io/study-helper)  
+🔗 [Try Study Helper Here](https://tobenwosu29-svg.github.io/study-helper)  
 
-*(Replace `yourusername` with your GitHub username once you deploy on GitHub Pages.)*
 
 ---
 
