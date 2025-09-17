@@ -31,11 +31,34 @@ function renderCards() {
   cards.forEach((c, i) => {
     let div = document.createElement("div");
     div.className = "card";
-    div.innerText = c.flipped ? c.a : c.q;
-    div.onclick = () => flipCard(i);
+
+    // Show Q or A
+    let text = document.createElement("span");
+    text.innerText = c.flipped ? c.a : c.q;
+    text.style.cursor = "pointer";
+    text.onclick = () => flipCard(i);
+
+    // Delete button
+    let delBtn = document.createElement("button");
+    delBtn.innerText = "❌";
+    delBtn.className = "delete-btn";
+    delBtn.onclick = (e) => {
+      e.stopPropagation(); // prevent flip when deleting
+      deleteCard(i);
+    };
+
+    div.appendChild(text);
+    div.appendChild(delBtn);
     container.appendChild(div);
   });
 }
+
+function deleteCard(i) {
+  cards.splice(i, 1); // remove that card
+  saveCards();
+  renderCards();
+}
+
 
 // Quiz functions
 function startQuiz() {
