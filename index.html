@@ -22,20 +22,14 @@
     <div id="cards" class="cards"></div>
   </div>
 
-<div id="quizSection" style="display:none;">
-  <h2>Quiz Mode</h2>
-  <div id="quizBox"></div>
-  <input id="quizAnswer" placeholder="Type your answer">
-  <button onclick="checkAnswer()">Submit</button>
-  <button onclick="verifyWithInternet(document.getElementById('quizAnswer').value)">Verify Online</button>
-  
-  <!-- Feedback box -->
-  <div id="quizFeedback" class="feedback"></div>
-</div>
-
-
+  <div id="quizSection" style="display:none;">
+    <h2>Quiz Mode</h2>
+    <div id="quizBox"></div>
+    <input id="quizAnswer" placeholder="Type your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="quizFeedback"></p>
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
