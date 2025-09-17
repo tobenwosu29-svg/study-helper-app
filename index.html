@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Helper</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>📚 Study Helper</h1>
+  
+  <div class="input-section">
+    <input id="question" placeholder="Enter question">
+    <input id="answer" placeholder="Enter answer">
+    <button onclick="addCard()">Add Card</button>
+  </div>
+
+  <button onclick="toggleMode()" id="modeBtn">Switch to Quiz Mode</button>
+
+  <div id="flashcardSection">
+    <h2>Your Flashcards</h2>
+    <div id="cards" class="cards"></div>
+  </div>
+
+  <div id="quizSection" style="display:none;">
+    <h2>Quiz Mode</h2>
+    <div id="quizBox"></div>
+    <input id="quizAnswer" placeholder="Type your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="quizFeedback"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
